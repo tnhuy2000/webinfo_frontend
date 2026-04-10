@@ -1,5 +1,5 @@
 overwrite: true
-schema: http://localhost:4001/graphql
+schema: ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
 documents:
   - 'codegen/graphql-definition/web-service/**/*.ts'
   - 'codegen/graphql-definition/web-service/**/*.graphql'

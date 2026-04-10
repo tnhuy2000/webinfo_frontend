@@ -2,8 +2,8 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-// Read .env.local file
-const envPath = path.join(__dirname, '.env.local');
+// Read .env file
+const envPath = path.join(__dirname, '.env');
 let port = 3000; // Default port
 
 if (fs.existsSync(envPath)) {
@@ -12,7 +12,7 @@ if (fs.existsSync(envPath)) {
 
   if (portMatch) {
     port = portMatch[1];
-    console.log(`Using port ${port} from .env.local`);
+    console.log(`Using port ${port} from .env`);
   }
 }
 
