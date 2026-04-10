@@ -2,6 +2,7 @@
 
 import { useServices } from '../hooks/use-services';
 import { ServiceCard } from './service-card';
+import type { Service } from '@/types';
 
 interface ServiceListProps {
   limit?: number;
@@ -41,8 +42,8 @@ export function ServiceList({ limit, isActive = true }: ServiceListProps) {
 
   return (
     <div className="grid md:grid-cols-3 gap-8">
-      {services.map((service) => (
-        <ServiceCard key={service._id} service={service} />
+      {services.filter(Boolean).map((service) => (
+        <ServiceCard key={service!._id} service={service as Service} />
       ))}
     </div>
   );

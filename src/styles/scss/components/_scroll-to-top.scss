@@ -1,0 +1,36 @@
+@use '../abstracts/variables' as *;
+@use 'sass:color';
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: $z-fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+
+  background: $bg-light;
+  color: $bg-dark;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity $transition-base, visibility $transition-base, transform $transition-base, background $transition-fast;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: color.adjust($bg-light, $lightness: -8%);
+  }
+}

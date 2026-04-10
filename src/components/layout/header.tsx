@@ -1,49 +1,126 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { navItems } from '@/config/navigation';
-import { siteConfig } from '@/config/site';
+import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
+import { useNavigations } from '@/features/portfolio';
+import { usePublicSettings } from '@/contexts/PublicSettingsContext';
+
+// Fallback navigation items (used when API is loading or fails)
+const fallbackNavItems = [
+  { label: 'About', href: '/about' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Articles', href: '/articles' },
+  { label: 'Contacts', href: '/contact' },
+];
+
+const languages = [
+  { code: 'En', label: 'English' },
+  { code: 'Vi', label: 'Vietnamese' },
+];
 
 export function Header() {
-  return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-primary">
-              {siteConfig.name}
-            </span>
-          </Link>
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeLanguage, setActiveLanguage] = useState('En');
+  const { getSetting } = usePublicSettings();
 
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
+  // Fetch navigation items from API
+  const { data: navData } = useNavigations(true);
+
+  // Use API data if available, otherwise fallback to static data
+  const apiNavItems = navData?.navigations as Array<{
+    label: string;
+    href: string;
+    order: number;
+  }> | undefined;
+
+  const navItems = apiNavItems && apiNavItems.length > 0
+    ? apiNavItems
+        .toSorted((a, b) => a.order - b.order)
+        .map((nav) => ({ label: nav.label, href: nav.href }))
+    : fallbackNavItems;
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <header className="header">
+      <div className="header__container container-gb">
+        {/* Logo */}
+        <Link href="/" className="header__logo">
+          <span className="header__logo-name">{getSetting('FIRST_NAME', 'Nikita')}</span>
+          <span className="header__logo-surname">{getSetting('LAST_NAME', 'Khvatov')}</span>
+        </Link>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="header__menu-toggle"
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
+
+        {/* Navigation - Fullscreen Mobile Menu */}
+        <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
+          {/* Close Button inside menu */}
+          <button
+            className="header__menu-close"
+            onClick={() => setIsMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <X />
+          </button>
+
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
+                className={`header__nav-item ${isActive ? 'header__nav-item--active' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
               >
-                {item.title}
+                {item.label}
               </Link>
-            ))}
-          </nav>
+            );
+          })}
+        </nav>
 
-          {/* Mobile menu button */}
-          <button className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100">
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        {/* Language Switcher */}
+        {/* <div className="header__language">
+          {languages.map((lang) => (
+            <button
+              key={lang.code}
+              className={`header__language-btn ${activeLanguage === lang.code ? 'header__language-btn--active' : ''}`}
+              onClick={() => setActiveLanguage(lang.code)}
+              aria-label={lang.label}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
+              {lang.code}
+            </button>
+          ))}
+        </div> */}
       </div>
     </header>
   );

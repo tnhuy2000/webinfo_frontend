@@ -1,0 +1,60 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Stacked Buttons Component
+// Two overlapping circular buttons (GitHub + Arrow)
+.stacked-buttons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 4rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+
+  &__btn {
+    @include flex-center;
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: $radius-full;
+    background: rgba($bg-light, 0.15);
+    color: $text-light;
+    @include transition;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1;
+
+    svg {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+
+    &:hover {
+      background: $bg-light;
+      color: $bg-dark;
+      z-index: 10;
+      transform: scale(1.1);
+    }
+
+    &--github {
+      left: 0;
+    }
+
+    &--arrow {
+      left: 1.25rem;
+    }
+  }
+
+  // Light theme variant
+  &--light {
+    .stacked-buttons__btn {
+      background: rgba($bg-dark, 0.1);
+      color: $text-dark;
+
+      &:hover {
+        background: $bg-dark;
+        color: $bg-light;
+      }
+    }
+  }
+}

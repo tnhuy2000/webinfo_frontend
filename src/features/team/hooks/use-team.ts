@@ -9,7 +9,7 @@ import type {
 
 export const useTeamMembers = (isActive?: boolean) => {
   return useQuery<GetTeamMembersQuery, GetTeamMembersQueryVariables>(GET_TEAM_MEMBERS, {
-    variables: { isActive },
+    variables: { isActive: isActive ?? null },
   });
 };
 

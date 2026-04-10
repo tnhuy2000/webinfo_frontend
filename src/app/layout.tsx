@@ -1,37 +1,46 @@
+import '@/styles/scss/style.scss'
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.scss";
+import { Be_Vietnam_Pro } from "next/font/google";
 import ApolloProvider from "@/lib/apollo-provider";
-import { Header, Footer } from "@/components/layout";
+import { Footer, Header } from "@/components/layout";
+import { ScrollToTop } from "@/components/ui";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { PublicSettingsProvider } from '@/contexts/PublicSettingsContext';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: "--font-be-vietnam-pro",
+})
 
 export const metadata: Metadata = {
   title: "Company Website - Modern Business Solutions",
   description: "Professional company website built with Next.js, TypeScript, and GraphQL",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const messages = await getMessages();
+
   return (
     <html lang="en">
-      <body suppressHydrationWarning>
-        <ApolloProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </ApolloProvider>
+      <body suppressHydrationWarning className={`${beVietnamPro.className}`}>
+        <NextIntlClientProvider messages={messages}>
+          <ApolloProvider>
+            <PublicSettingsProvider>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+              <ScrollToTop />
+            </PublicSettingsProvider>
+          </ApolloProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

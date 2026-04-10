@@ -8,9 +8,9 @@ import { onError } from '@apollo/client/link/error';
  * - Network errors (connection issues, server errors)
  * - Authentication errors (token expired, unauthorized)
  */
-export const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
-  if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path, extensions }) => {
+export const errorLink = onError((errorHandler: any) => {
+  if (errorHandler.graphQLErrors) {
+    errorHandler.graphQLErrors.forEach(({ message, locations, path, extensions }: any) => {
       console.error(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
       );
@@ -31,8 +31,8 @@ export const errorLink = onError(({ graphQLErrors, networkError, operation }) =>
     });
   }
 
-  if (networkError) {
-    console.error(`[Network error]: ${networkError.message}`);
+  if (errorHandler.networkError) {
+    console.error(`[Network error]: ${errorHandler.networkError.message}`);
 
     // Handle network errors
     // Show toast notification or error message to user

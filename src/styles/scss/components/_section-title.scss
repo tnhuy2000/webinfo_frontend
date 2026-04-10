@@ -1,0 +1,47 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.section-title {
+  margin: 0 0 $spacing-2xl 0;
+
+  // Variants
+  &--monospace {
+    font-family: monospace;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: $text-light;
+    letter-spacing: 0.05em;
+
+    @include respond-to('md') {
+      font-size: 1.5rem;
+    }
+  }
+
+  &--default {
+    font-size: 4rem;
+    font-weight: 700;
+    color: $text-light;
+    letter-spacing: 0.05em;
+
+    @include respond-to('md') {
+      font-size: 5rem;
+    }
+
+    @include respond-to('lg') {
+      font-size: 6rem;
+    }
+  }
+
+  // Alignment
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}

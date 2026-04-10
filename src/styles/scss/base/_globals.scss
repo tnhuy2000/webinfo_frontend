@@ -1,16 +1,16 @@
-@use '../styles/variables' as *;
-@use '../styles/mixins' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #2563eb;
-  --secondary: #64748b;
-  --accent: #f59e0b;
+  --background: #{$bg-light};
+  --foreground: #{$text-dark};
+  --primary: #{$primary-color};
+  --secondary: #{$secondary-color};
+  --accent: #{$accent-color};
 }
 
 @theme inline {
@@ -19,15 +19,14 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-be-vietnam-pro);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #3b82f6;
+    --background: #{$bg-light};
+    --foreground: #{$text-light};
+    --primary: #{$brand-blue};
     --secondary: #94a3b8;
   }
 }
@@ -52,4 +51,9 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Container - Global class */
+.container-gb {
+  @include container
 }

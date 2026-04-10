@@ -1,0 +1,152 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.work-experience {
+  background-color: $bg-dark;
+  padding: $spacing-2xl 0;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: $text-light;
+    text-align: right;
+    margin: 0 0 $spacing-2xl 0;
+    letter-spacing: 0.1em;
+
+    @include respond-to('md') {
+      font-size: 5rem;
+    }
+
+    @include respond-to('lg') {
+      font-size: 6rem;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+    padding: $spacing-lg 0;
+    border-bottom: 1px solid rgba($text-light, 0.1);
+
+    @include respond-to('md') {
+      grid-template-columns: 150px 1fr 1fr;
+      gap: $spacing-xl;
+      align-items: center;
+    }
+
+    @include respond-to('lg') {
+      grid-template-columns: 180px 1fr 1fr;
+    }
+
+    &--active {
+      background: linear-gradient(90deg, rgba($text-light, 0.1) 0%, transparent 100%);
+      border-left: 3px solid $text-light;
+      padding-left: $spacing-lg;
+      margin-left: -$spacing-lg;
+
+      @include respond-to('md') {
+        padding-left: $spacing-xl;
+        margin-left: -$spacing-xl;
+      }
+    }
+  }
+
+  &__period {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__years {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba($text-light, 0.7);
+
+    @include respond-to('md') {
+      font-size: 1.125rem;
+    }
+  }
+
+  &__duration {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: rgba($text-light, 0.5);
+    font-style: italic;
+  }
+
+  &__company {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: $text-light;
+
+    @include respond-to('md') {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__role {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  &__position {
+    font-family: monospace;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $text-light;
+
+    @include respond-to('md') {
+      font-size: 1rem;
+    }
+  }
+
+  &__separator {
+    color: rgba($text-light, 0.3);
+  }
+
+  &__tech {
+    font-family: monospace;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $text-light;
+
+    @include respond-to('md') {
+      font-size: 1rem;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    margin-top: $spacing-xl;
+    padding-top: $spacing-lg;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: rgba($text-light, 0.5);
+  }
+
+  &__total {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba($text-light, 0.7);
+    font-style: italic;
+  }
+}

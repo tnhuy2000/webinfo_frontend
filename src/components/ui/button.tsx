@@ -1,39 +1,143 @@
-import React from 'react';
+"use client";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+
+// Base Button
+interface ButtonProps {
   children: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  external?: boolean;
 }
 
 export function Button({
+  children,
+  href,
+  onClick,
   variant = 'primary',
   size = 'md',
-  children,
   className = '',
-  ...props
+  external = false,
 }: ButtonProps) {
-  const baseStyles = 'rounded font-medium transition-colors inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed';
+  const classes = `btn btn--${variant} btn--${size} ${className}`;
 
-  const variantStyles = {
-    primary: 'bg-primary text-white hover:bg-primary/90',
-    secondary: 'bg-secondary text-white hover:bg-secondary/90',
-    outline: 'border-2 border-primary text-primary hover:bg-primary/10',
-    ghost: 'text-primary hover:bg-primary/10',
-  };
-
-  const sizeStyles = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-6 py-2 text-base',
-    lg: 'px-8 py-3 text-lg',
-  };
+  if (href) {
+    if (external) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={classes}
+        >
+          {children}
+        </a>
+      );
+    }
+    return (
+      <Link href={href} className={classes}>
+        {children}
+      </Link>
+    );
+  }
 
   return (
-    <button
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
-      {...props}
-    >
+    <button onClick={onClick} className={classes}>
       {children}
     </button>
+  );
+}
+
+// Icon Button
+interface IconButtonProps {
+  icon: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  external?: boolean;
+  'aria-label'?: string;
+}
+
+export function IconButton({
+  icon,
+  href,
+  onClick,
+  variant = 'outline',
+  size = 'md',
+  className = '',
+  external = false,
+  'aria-label': ariaLabel,
+}: IconButtonProps) {
+  const classes = `icon-btn icon-btn--${variant} icon-btn--${size} ${className}`;
+
+  if (href) {
+    if (external) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={classes}
+          aria-label={ariaLabel}
+        >
+          {icon}
+        </a>
+      );
+    }
+    return (
+      <Link href={href} className={classes} aria-label={ariaLabel}>
+        {icon}
+      </Link>
+    );
+  }
+
+  return (
+    <button onClick={onClick} className={classes} aria-label={ariaLabel}>
+      {icon}
+    </button>
+  );
+}
+
+// Button Group (Button + IconButton)
+interface ButtonGroupProps {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  external?: boolean;
+}
+
+export function ButtonGroup({
+  label,
+  href,
+  onClick,
+  variant = 'primary',
+  size = 'md',
+  className = '',
+  external = false,
+}: ButtonGroupProps) {
+  return (
+    <div className={`btn-group ${className}`}>
+      <Button href={href} onClick={onClick} variant={variant} size={size} external={external}>
+        {label}
+      </Button>
+      <IconButton
+        icon={<ArrowRight />}
+        href={href}
+        onClick={onClick}
+        variant="outline"
+        size={size}
+        external={external}
+        aria-label={label}
+      />
+    </div>
   );
 }

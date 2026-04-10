@@ -1,0 +1,72 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Single Social Link
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: transparent;
+  border: 1px solid rgba($text-light, 0.2);
+  border-radius: $radius-full;
+  color: $text-light;
+  text-decoration: none;
+  @include transition;
+
+  &:hover {
+    background: rgba($text-light, 0.1);
+    border-color: rgba($text-light, 0.4);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  // Sizes
+  &--sm {
+    padding: $spacing-xs $spacing-md;
+    font-size: 0.75rem;
+
+    .social-link__icon {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  &--md {
+    padding: $spacing-sm $spacing-lg;
+    font-size: 0.875rem;
+
+    .social-link__icon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &--lg {
+    padding: $spacing-md $spacing-xl;
+    font-size: 1rem;
+
+    .social-link__icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}
+
+// Social Links Group
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-md;
+
+  @include respond-to('md') {
+    gap: $spacing-lg;
+  }
+}

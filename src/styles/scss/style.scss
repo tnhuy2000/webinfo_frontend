@@ -1,0 +1,35 @@
+/* third party styles */
+@use 'antd/dist/reset.css';
+
+
+
+/* abstracts styles */
+@use "abstracts/variables";
+@use "abstracts/mixins";
+
+
+/* vendors styles */
+@use "vendors/swiper";
+
+/* base styles */
+@use "base/globals";
+
+/* layouts styles */
+@use "layouts/header";
+@use "layouts/hero";
+@use "layouts/footer";
+
+/* sections styles */
+@use "sections/about-me";
+@use "sections/projects";
+@use "sections/work-experience";
+@use "sections/articles";
+
+/* components styles */
+@use "components/stacked-buttons";
+@use "components/section-title";
+@use "components/button";
+@use "components/social-link";
+@use "components/scroll-to-top";
+
+/* pages styles */

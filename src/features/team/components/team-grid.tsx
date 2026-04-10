@@ -2,6 +2,7 @@
 
 import { useTeamMembers } from '../hooks/use-team';
 import { TeamMemberCard } from './team-member-card';
+import type { TeamMember } from '@/types';
 
 interface TeamGridProps {
   limit?: number;
@@ -41,8 +42,8 @@ export function TeamGrid({ limit, isActive = true }: TeamGridProps) {
 
   return (
     <div className="grid md:grid-cols-4 gap-8">
-      {members.map((member) => (
-        <TeamMemberCard key={member._id} member={member} />
+      {members.filter(Boolean).map((member) => (
+        <TeamMemberCard key={member!._id} member={member as TeamMember} />
       ))}
     </div>
   );

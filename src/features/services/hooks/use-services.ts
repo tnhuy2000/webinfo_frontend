@@ -9,7 +9,7 @@ import type {
 
 export const useServices = (isActive?: boolean) => {
   return useQuery<GetServicesQuery, GetServicesQueryVariables>(GET_SERVICES, {
-    variables: { isActive },
+    variables: { isActive: isActive ?? null },
   });
 };
 
