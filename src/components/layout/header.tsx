@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useNavigations } from '@/features/portfolio';
 import { usePublicSettings } from '@/contexts/PublicSettingsContext';
-
+import { getImageUrl } from '@/utils/image';
+import Image from 'next/image';
 // Fallback navigation items (used when API is loading or fails)
 const fallbackNavItems = [
   { label: 'About', href: '/about' },
@@ -62,14 +63,20 @@ export function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  const faviconURL = getSetting('FAVICON_WEBSITE')
+  const siteLogoURL = getSetting('SITE_LOGO')
   return (
     <header className="header">
+      <link rel="icon" type="image/x-icon" href={getImageUrl(faviconURL) ? getImageUrl(faviconURL) : ''} />
       <div className="header__container container-gb">
         {/* Logo */}
         <Link href="/" className="header__logo">
-          <span className="header__logo-name">{getSetting('FIRST_NAME', 'Nikita')}</span>
-          <span className="header__logo-surname">{getSetting('LAST_NAME', 'Khvatov')}</span>
+          <Image
+            src={getImageUrl(siteLogoURL) ? getImageUrl(siteLogoURL) : ''}
+            alt="Site logo"
+            fill
+            className="header__logo-image"
+          />
         </Link>
 
         {/* Mobile Menu Toggle */}

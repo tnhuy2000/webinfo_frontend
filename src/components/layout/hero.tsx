@@ -120,7 +120,7 @@ export function Hero() {
         <div className="hero__grid">
           {/* Row 1 - Col 1: Full-stack */}
           <h1 className="hero__title">
-            <span className="hero__title-line">{getSetting('HERO_TITLE_LINE1', 'Full-stack')}</span>
+            <span className="hero__title-line">{getSetting('HERO_TITLE_LINE_ONE', 'Full-stack')}</span>
           </h1>
 
           {/* Row 1 - Col 2: CTA Buttons */}
@@ -142,7 +142,7 @@ export function Hero() {
           </p>
 
           {/* Row 2 - Col 2: Developer */}
-          <span className="hero__title-line hero__title-line--outline">{getSetting('HERO_TITLE_LINE2', 'Developer')}</span>
+          <span className="hero__title-line hero__title-line--outline">{getSetting('HERO_TITLE_LINE_TWO', 'Developer')}</span>
         </div>
 
         {/* Social Links */}

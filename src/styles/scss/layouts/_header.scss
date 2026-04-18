@@ -29,6 +29,12 @@
     }
   }
 
+    &__logo-image {
+      margin: 15px;
+      width: 80px !important;
+      height: 60px !important;
+    }
+
   &__logo-name {
     font-size: 1.125rem;
     font-weight: 500;
