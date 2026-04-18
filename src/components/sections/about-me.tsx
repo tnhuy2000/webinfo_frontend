@@ -95,10 +95,10 @@ export function AboutMe() {
           <span className="about-me__label">{getSetting('ABOUT_LABEL', '... /About me ...')}</span>
           <div className="about-me__intro">
             <p className="about-me__intro-text">
-              {getSetting('ABOUT_INTRO_TEXT', `Hello! I'm ${getSetting('FIRST_NAME', 'Nikita')}, I'm a full-stack developer.`)}
+              {getSetting('ABOUT_INTRO_TEXT_LINE_ONE', '')}
             </p>
             <p className="about-me__intro-text">
-              {getSetting('ABOUT_EXPERIENCE_TEXT', `More than ${getSetting('EXPERIENCE_YEARS', '5')} years experience.`)}
+              {getSetting('ABOUT_INTRO_TEXT_LINE_TWO', '')}
             </p>
           </div>
         </div>
@@ -136,7 +136,7 @@ export function AboutMe() {
             {/* Bottom Row */}
             <div className="about-me__bottom-row">
               <p className="about-me__favorite">
-                {getSetting('ABOUT_FAVORITE_TEXT', 'Some of my favorite technologies, topics, or tools that I worked with')}
+                {getSetting('ABOUT_FAVORITE_TEXT', '')}
               </p>
 
               {/* DevOps Card */}

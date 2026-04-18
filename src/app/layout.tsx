@@ -17,8 +17,8 @@ const beVietnamPro = Be_Vietnam_Pro({
 })
 
 export const metadata: Metadata = {
-  title: "Company Website - Modern Business Solutions",
-  description: "Professional company website built with Next.js, TypeScript, and GraphQL",
+  title: "Nhu Y Truong | Full-stack Developer",
+  description: "PPortfolio of Nhu Y Truong, a Full-stack Developer specializing in React.js, Next.js, and Node.js/NestJS. Showcasing projects, experience, and technical skills",
 };
 
 export default async function RootLayout({

@@ -19,7 +19,7 @@ export default function Home() {
       <Projects />
 
       {/* Articles Section */}
-      <Articles />
+      {/* <Articles /> */}
 
     </div>
   );

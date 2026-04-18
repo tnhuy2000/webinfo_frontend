@@ -15,7 +15,7 @@ export function StackedButtons({
 }: StackedButtonsProps) {
   return (
     <div className={`stacked-buttons ${className}`}>
-      <a
+      {/* <a
         href={githubUrl}
         target="_blank"
         rel="noopener noreferrer"
@@ -23,7 +23,7 @@ export function StackedButtons({
         aria-label="GitHub"
       >
         <GitBranch />
-      </a>
+      </a> */}
       <a
         href={externalUrl}
         target="_blank"

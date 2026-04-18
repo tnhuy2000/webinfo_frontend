@@ -120,17 +120,17 @@ export function Hero() {
         <div className="hero__grid">
           {/* Row 1 - Col 1: Full-stack */}
           <h1 className="hero__title">
-            <span className="hero__title-line">{getSetting('HERO_TITLE_LINE_ONE', 'Full-stack')}</span>
+            <span className="hero__title-line">{getSetting('HERO_TITLE_LINE_ONE', '')}</span>
           </h1>
 
           {/* Row 1 - Col 2: CTA Buttons */}
           <div className="hero__cta">
-            <Button href={getSetting('HERO_CTA_LINK', '/projects')} size="lg">
-              {getSetting('HERO_CTA_TEXT', 'Projects')}
+            <Button href={getSetting('HERO_CTA_LINK', '')} size="lg">
+              {getSetting('HERO_CTA_TEXT', '')}
             </Button>
             <IconButton
               icon={<ArrowRight />}
-              href={getSetting('HERO_CTA_LINK', '/projects')}
+              href={getSetting('HERO_CTA_LINK', '')}
               size="lg"
               aria-label="View projects"
             />
@@ -138,18 +138,18 @@ export function Hero() {
 
           {/* Row 2 - Col 1: Description */}
           <p className="hero__description">
-            {getSetting('HERO_DESCRIPTION', 'My goal is to write maintainable, clean and understandable code to process development was enjoyable.')}
+            {getSetting('HERO_DESCRIPTION', '')}
           </p>
 
           {/* Row 2 - Col 2: Developer */}
-          <span className="hero__title-line hero__title-line--outline">{getSetting('HERO_TITLE_LINE_TWO', 'Developer')}</span>
+          <span className="hero__title-line hero__title-line--outline">{getSetting('HERO_TITLE_LINE_TWO', '')}</span>
         </div>
 
         {/* Social Links */}
         <SocialLinks links={socialLinks} className="hero__social" />
 
         {/* Articles Slider */}
-        <div className="hero__slider">
+        {/* <div className="hero__slider">
           <IconButton
             icon={<ArrowLeft />}
             onClick={handlePrev}
@@ -222,7 +222,7 @@ export function Hero() {
             className="hero__slider-btn hero__slider-btn--next"
             aria-label="Next slide"
           />
-        </div>
+        </div> */}
       </div>
     </section>
   );

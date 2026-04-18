@@ -73,8 +73,8 @@ export function Footer() {
           {/* Left Side - Name */}
           <div className="footer__brand">
             <h2 className="footer__name">
-              <span className="footer__firstname">{getSetting('FIRST_NAME', 'Nikita')}</span>
-              <span className="footer__lastname">{getSetting('LAST_NAME', 'Khvatov')}</span>
+              <span className="footer__firstname">{getSetting('FIRST_NAME', '')}</span>
+              <span className="footer__lastname">{getSetting('LAST_NAME', '')}</span>
             </h2>
             <p className="footer__role">
               {getSetting('ROLE', 'Full-stack\ndeveloper').split('\n').map((line: string, i: number) => (
@@ -109,10 +109,10 @@ export function Footer() {
                 Handcrafted by <span>ME</span> /
               </div>
               <div className="footer__site-item">
-                Designed by <span>{getSetting('FOOTER_DESIGNER_NAME', 'Taisia')}</span> /
+                Designed by <span>{getSetting('FOOTER_DESIGNER_NAME', '')}</span> /
               </div>
               <div className="footer__site-item">
-                Powered by <span>{getSetting('FOOTER_POWERED_BY', 'NextJs')}</span>
+                Powered by <span>{getSetting('FOOTER_POWERED_BY', '')}</span>
               </div>
             </div>
           </div>
